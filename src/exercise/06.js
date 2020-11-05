@@ -1,6 +1,9 @@
 // Basic Forms
 // http://localhost:3000/isolated/exercise/06.js
-
+/*
+SyntheticEvent는 React에서 만든 이벤트.일종의 faker.
+진짜 이름을  알고 싶다면 event.nativeEventName? 대부분은 이걸 쓸일이 없음.
+*/
 import React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
@@ -8,6 +11,11 @@ function UsernameForm({onSubmitUsername}) {
   // 💰 Make sure to accept the `event` as an argument and call
   // `event.preventDefault()` to prevent the default behavior of form submit
   // events (which refreshes the page).
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    onSubmitUsername(event.target.value)
+  }
   //
   // 🐨 get the value from the username input (using whichever method
   // you prefer from the options mentioned in the instructions)
@@ -20,7 +28,7 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 make sure to associate the label to the input. 
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Username:</label>
         <input name="username" type="text" />
